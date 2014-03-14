@@ -10,7 +10,7 @@
 
 @interface MoviesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-
+@property (nonatomic, strong) NSArray *movies;
 @end
 
 @implementation MoviesViewController
@@ -20,6 +20,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = @"In Theaters Now";
     }
     return self;
 }
@@ -28,7 +29,22 @@
 {
     [super viewDidLoad];
     self.tableView.dataSource = self;
-//    self.tableView.delegate = self;
+// TODO?   self.tableView.delegate = self;
+    [self.tableView registerClass:[UITableViewCell class]  forCellReuseIdentifier:@"MoviesCell"];
+    [self getMovies];
+}
+
+- (void)getMovies
+{
+    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs";
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+
+        self.movies = object[@"movies"];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,14 +57,20 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return [self.movies count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
+    static NSString *CellIdentifier = @"MoviesCell";
     
-    cell.textLabel.text = [NSString stringWithFormat:@"This is row %d", indexPath.row];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    
+    NSDictionary *movie = [self.movies objectAtIndex:indexPath.row];
+    cell.textLabel.text = [movie objectForKey:@"title"];
+
+//    cell.detailTextLabel.text = [movie objectForKey:@"synopsis"];
+//    NSLog(@"Row: %i", indexPath.row);
     
     return cell;
 }
