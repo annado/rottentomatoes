@@ -21,6 +21,8 @@
 		58B1364618D16992007732CF /* RottenTomatoesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B1364518D16992007732CF /* RottenTomatoesTests.m */; };
 		58B1365218D16BAE007732CF /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B1365018D16BAE007732CF /* MoviesViewController.m */; };
 		58B1365318D16BAE007732CF /* MoviesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58B1365118D16BAE007732CF /* MoviesViewController.xib */; };
+		58B1365718D29F44007732CF /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58B1365518D29F44007732CF /* MovieViewController.m */; };
+		58B1365818D29F44007732CF /* MovieViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 58B1365618D29F44007732CF /* MovieViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,9 @@
 		58B1364F18D16BAE007732CF /* MoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
 		58B1365018D16BAE007732CF /* MoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 		58B1365118D16BAE007732CF /* MoviesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MoviesViewController.xib; sourceTree = "<group>"; };
+		58B1365418D29F44007732CF /* MovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
+		58B1365518D29F44007732CF /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
+		58B1365618D29F44007732CF /* MovieViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,13 +117,11 @@
 		58B1362618D16992007732CF /* RottenTomatoes */ = {
 			isa = PBXGroup;
 			children = (
+				58B1365A18D29F70007732CF /* View Controllers */,
 				58B1362F18D16992007732CF /* AppDelegate.h */,
 				58B1363018D16992007732CF /* AppDelegate.m */,
 				58B1363218D16992007732CF /* Images.xcassets */,
 				58B1362718D16992007732CF /* Supporting Files */,
-				58B1364F18D16BAE007732CF /* MoviesViewController.h */,
-				58B1365018D16BAE007732CF /* MoviesViewController.m */,
-				58B1365118D16BAE007732CF /* MoviesViewController.xib */,
 			);
 			path = RottenTomatoes;
 			sourceTree = "<group>";
@@ -150,6 +153,19 @@
 				58B1364218D16992007732CF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		58B1365A18D29F70007732CF /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				58B1364F18D16BAE007732CF /* MoviesViewController.h */,
+				58B1365018D16BAE007732CF /* MoviesViewController.m */,
+				58B1365118D16BAE007732CF /* MoviesViewController.xib */,
+				58B1365418D29F44007732CF /* MovieViewController.h */,
+				58B1365518D29F44007732CF /* MovieViewController.m */,
+				58B1365618D29F44007732CF /* MovieViewController.xib */,
+			);
+			name = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +246,7 @@
 				58B1362B18D16992007732CF /* InfoPlist.strings in Resources */,
 				58B1365318D16BAE007732CF /* MoviesViewController.xib in Resources */,
 				58B1363318D16992007732CF /* Images.xcassets in Resources */,
+				58B1365818D29F44007732CF /* MovieViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,6 +268,7 @@
 				58B1365218D16BAE007732CF /* MoviesViewController.m in Sources */,
 				58B1363118D16992007732CF /* AppDelegate.m in Sources */,
 				58B1362D18D16992007732CF /* main.m in Sources */,
+				58B1365718D29F44007732CF /* MovieViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +469,7 @@
 				58B1364B18D16992007732CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		58B1364C18D16992007732CF /* Build configuration list for PBXNativeTarget "RottenTomatoesTests" */ = {
 			isa = XCConfigurationList;
@@ -459,6 +478,7 @@
 				58B1364E18D16992007732CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

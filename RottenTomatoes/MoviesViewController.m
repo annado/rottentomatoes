@@ -7,6 +7,7 @@
 //
 
 #import "MoviesViewController.h"
+#import "MovieViewController.h"
 
 @interface MoviesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -29,7 +30,7 @@
 {
     [super viewDidLoad];
     self.tableView.dataSource = self;
-// TODO?   self.tableView.delegate = self;
+    self.tableView.delegate = self;
     [self.tableView registerClass:[UITableViewCell class]  forCellReuseIdentifier:@"MoviesCell"];
     [self getMovies];
 }
@@ -73,6 +74,15 @@
 //    NSLog(@"Row: %i", indexPath.row);
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"didSelectRow: %i", indexPath.row);
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    MovieViewController *movieController = [[MovieViewController alloc] init];
+    [[self navigationController] pushViewController:movieController animated:YES];
 }
 
 @end
