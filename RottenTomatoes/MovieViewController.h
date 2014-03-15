@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class Movie;
+
 @interface MovieViewController : UIViewController
 
-- (id)initWithMovie:(NSDictionary *)movie;
+- (id)initWithMovie: (Movie *)movie;
+
 @end

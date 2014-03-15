@@ -8,10 +8,12 @@
 
 #import "MovieListViewController.h"
 #import "MovieViewController.h"
+#import "MovieList.h"
+#import "Movie.h"
 
 @interface MovieListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSArray *movies;
+@property (nonatomic, strong) MovieList *movies;
 @end
 
 @implementation MovieListViewController
@@ -22,6 +24,7 @@
     if (self) {
         // Custom initialization
         self.title = @"In Theaters Now";
+        self.movies = [[MovieList alloc] initWithUrl:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs"];
     }
     return self;
 }
@@ -32,18 +35,7 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerClass:[UITableViewCell class]  forCellReuseIdentifier:@"MoviesCell"];
-    [self getMovies];
-}
-
-- (void)getMovies
-{
-    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs";
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-
-        self.movies = object[@"movies"];
+    [self.movies load:^(void) {
         [self.tableView reloadData];
     }];
 }
@@ -67,12 +59,10 @@
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSDictionary *movie = [self.movies objectAtIndex:indexPath.row];
-    cell.textLabel.text = [movie objectForKey:@"title"];
+    NSLog(@"indexPath.row = %i",indexPath.row);
+    Movie *movie = [self.movies get:indexPath.row];
+    cell.textLabel.text = [movie title];
 
-//    cell.detailTextLabel.text = [movie objectForKey:@"synopsis"];
-//    NSLog(@"Row: %i", indexPath.row);
-    
     return cell;
 }
 
@@ -81,7 +71,7 @@
     NSLog(@"didSelectRow: %i", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    NSDictionary *movie = [self.movies objectAtIndex:indexPath.row];
+    Movie *movie = [self.movies get:indexPath.row];
     MovieViewController *movieController = [[MovieViewController alloc] initWithMovie:movie];
     [[self navigationController] pushViewController:movieController animated:YES];
 }

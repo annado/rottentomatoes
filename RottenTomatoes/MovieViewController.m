@@ -7,11 +7,12 @@
 //
 
 #import "MovieViewController.h"
+#import "Movie.h"
 
 @interface MovieViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (strong, nonatomic) NSDictionary *movie;
+@property (strong, nonatomic) Movie *movie;
 @end
 
 @implementation MovieViewController
@@ -24,12 +25,12 @@
 //    return self;
 //}
 
-- (id)initWithMovie:(NSDictionary *)movie
+- (id)initWithMovie:(Movie *)movie
 {
     self.movie = movie;
     self = [super initWithNibName:@"MovieViewController" bundle:nil];
     if (self) {
-        self.title = [self.movie objectForKey:@"title"];
+        self.title = [self.movie title];
     }
 //    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[self.movie objectForKey:@"posters"] objectForKey:@"thumbnail"]]]]];
 
