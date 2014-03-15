@@ -6,15 +6,15 @@
 //  Copyright (c) 2014 Anna Do. All rights reserved.
 //
 
-#import "MoviesViewController.h"
+#import "MovieListViewController.h"
 #import "MovieViewController.h"
 
-@interface MoviesViewController ()
+@interface MovieListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSArray *movies;
 @end
 
-@implementation MoviesViewController
+@implementation MovieListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -81,7 +81,8 @@
     NSLog(@"didSelectRow: %i", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    MovieViewController *movieController = [[MovieViewController alloc] init];
+    NSDictionary *movie = [self.movies objectAtIndex:indexPath.row];
+    MovieViewController *movieController = [[MovieViewController alloc] initWithMovie:movie];
     [[self navigationController] pushViewController:movieController animated:YES];
 }
 

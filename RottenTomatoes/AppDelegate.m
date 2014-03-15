@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MoviesViewController.h"
+#import "MovieListViewController.h"
 
 @implementation AppDelegate
 
@@ -15,7 +15,7 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    MoviesViewController *moviesViewController = [[MoviesViewController alloc] init];
+    MovieListViewController *moviesViewController = [[MovieListViewController alloc] init];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:moviesViewController];
     
     self.window.rootViewController = navController;

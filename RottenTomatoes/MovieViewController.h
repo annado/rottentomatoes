@@ -10,4 +10,5 @@
 
 @interface MovieViewController : UIViewController
 
+- (id)initWithMovie:(NSDictionary *)movie;
 @end

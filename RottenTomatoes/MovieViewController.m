@@ -11,24 +11,35 @@
 @interface MovieViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-
+@property (strong, nonatomic) NSDictionary *movie;
 @end
 
 @implementation MovieViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//    }
+//    return self;
+//}
+
+- (id)initWithMovie:(NSDictionary *)movie
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self.movie = movie;
+    self = [super initWithNibName:@"MovieViewController" bundle:nil];
     if (self) {
-        self.title = @"[Movie Name]";
+        self.title = [self.movie objectForKey:@"title"];
     }
+//    self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[[self.movie objectForKey:@"posters"] objectForKey:@"thumbnail"]]]]];
+
     return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
 }
 
 - (void)didReceiveMemoryWarning
