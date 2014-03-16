@@ -9,9 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface MovieCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *moviePosterView;
+@property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *castLabel;
 
+- (void)setMoviePosterWithURL:(NSString *)url;
 @end

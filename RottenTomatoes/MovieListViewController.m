@@ -58,12 +58,12 @@
 {
     static NSString *CellIdentifier = @"MoviesCell";
     
-    MovieCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    MovieCell *cell = (MovieCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSLog(@"Cell %i",indexPath.row);
     Movie *movie = [self.movies get:indexPath.row];
-    cell.titleLabel.text = [movie title];
-
+    cell.movieTitleLabel.text = [movie title];
+    [cell setMoviePosterWithURL:[movie posterUrl]];
     return cell;
 }
 

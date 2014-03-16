@@ -22,4 +22,9 @@
     return [self.dictionary objectForKey:@"title"];
 }
 
+- (NSString *)posterUrl
+{
+    return [[self.dictionary objectForKey:@"posters"] objectForKey:@"thumbnail"];
+}
+
 @end

@@ -14,24 +14,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cy2-Jl-hE2">
-                        <rect key="frame" x="10" y="10" width="80" height="100"/>
+                        <rect key="frame" x="10" y="10" width="61" height="91"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSu-fU-1ht">
-                        <rect key="frame" x="98" y="10" width="202" height="25"/>
+                        <rect key="frame" x="79" y="10" width="202" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DaK-AH-ReM">
-                        <rect key="frame" x="98" y="89" width="202" height="21"/>
+                        <rect key="frame" x="79" y="89" width="202" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="202" translatesAutoresizingMaskIntoConstraints="NO" id="Dqi-XP-Zbk">
-                        <rect key="frame" x="98" y="43" width="202" height="38"/>
+                        <rect key="frame" x="79" y="43" width="202" height="38"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <nil key="highlightedColor"/>
@@ -40,9 +40,9 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="castLabel" destination="DaK-AH-ReM" id="BQU-P0-Kqf"/>
-                <outlet property="imageView" destination="Cy2-Jl-hE2" id="ld6-I1-hLV"/>
+                <outlet property="moviePosterView" destination="Cy2-Jl-hE2" id="Ibs-Mv-0BU"/>
+                <outlet property="movieTitleLabel" destination="nSu-fU-1ht" id="iUS-fg-hSE"/>
                 <outlet property="summaryLabel" destination="Dqi-XP-Zbk" id="EeC-R7-9OX"/>
-                <outlet property="titleLabel" destination="nSu-fU-1ht" id="jfg-7n-v95"/>
             </connections>
         </tableViewCell>
     </objects>
