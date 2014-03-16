@@ -15,5 +15,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
 @property (weak, nonatomic) IBOutlet UILabel *castLabel;
 
+- (void)setMovieTitle: (NSString *)title;
+- (void)setSynopsis: (NSString *)synopsis;
 - (void)setMoviePosterWithURL:(NSString *)url;
+
+- (void)setCast:(NSString *)cast;
 @end

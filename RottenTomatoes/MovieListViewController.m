@@ -35,7 +35,8 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MoviesCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
+
     [self.movies load:^(void) {
         [self.tableView reloadData];
     }];
@@ -56,14 +57,19 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"MoviesCell";
+    static NSString *CellIdentifier = @"MovieCell";
     
     MovieCell *cell = (MovieCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSLog(@"Cell %i",indexPath.row);
     Movie *movie = [self.movies get:indexPath.row];
-    cell.movieTitleLabel.text = [movie title];
+    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
+
+    [cell setMovieTitle:[movie title]];
     [cell setMoviePosterWithURL:[movie posterUrl]];
+    [cell setSynopsis:[movie synopsis]];
+    [cell setCast:[movie cast]];
+
     return cell;
 }
 
@@ -75,6 +81,11 @@
     Movie *movie = [self.movies get:indexPath.row];
     MovieViewController *movieController = [[MovieViewController alloc] initWithMovie:movie];
     [[self navigationController] pushViewController:movieController animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 111;
 }
 
 @end

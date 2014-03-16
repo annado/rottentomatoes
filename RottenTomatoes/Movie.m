@@ -27,4 +27,19 @@
     return [[self.dictionary objectForKey:@"posters"] objectForKey:@"thumbnail"];
 }
 
+- (NSString *)synopsis
+{
+    return [self.dictionary objectForKey:@"synopsis"];
+}
+
+- (NSString *)cast
+{
+    NSMutableArray *actorArray = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary *cast in [self.dictionary objectForKey:@"abridged_cast"]) {
+        [actorArray addObject:[cast objectForKey:@"name"]];
+    }
+    return [actorArray componentsJoinedByString:@", "];
+}
+
 @end

@@ -27,6 +27,16 @@
     // Configure the view for the selected state
 }
 
+- (void)setMovieTitle: (NSString *)title
+{
+    self.movieTitleLabel.text = title;
+}
+
+- (void)setSynopsis: (NSString *)synopsis
+{
+    self.summaryLabel.text = synopsis;
+}
+
 - (void)setMoviePosterWithURL:(NSString *)url
 {
     [self.moviePosterView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]
@@ -40,6 +50,11 @@
                                             }];
                        }
                        failure:NULL];
+}
+
+- (void)setCast:(NSString *)cast
+{
+    self.castLabel.text = cast;
 }
 
 @end
