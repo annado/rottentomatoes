@@ -10,6 +10,7 @@
 #import "MovieViewController.h"
 #import "MovieList.h"
 #import "Movie.h"
+#import "MovieCell.h"
 
 @interface MovieListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -34,7 +35,7 @@
     [super viewDidLoad];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    [self.tableView registerClass:[UITableViewCell class]  forCellReuseIdentifier:@"MoviesCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MoviesCell"];
     [self.movies load:^(void) {
         [self.tableView reloadData];
     }];
@@ -57,11 +58,11 @@
 {
     static NSString *CellIdentifier = @"MoviesCell";
     
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    MovieCell *cell = [self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    NSLog(@"indexPath.row = %i",indexPath.row);
+    NSLog(@"Cell %i",indexPath.row);
     Movie *movie = [self.movies get:indexPath.row];
-    cell.textLabel.text = [movie title];
+    cell.titleLabel.text = [movie title];
 
     return cell;
 }
