@@ -12,8 +12,8 @@
 
 @interface MovieViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionTextView;
-@property (weak, nonatomic) IBOutlet UITextView *castTextView;
+@property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
+@property (weak, nonatomic) IBOutlet UILabel *castLabel;
 @property (strong, nonatomic) Movie *movie;
 @end
 
@@ -23,8 +23,6 @@
 {
     self = [super initWithNibName:@"MovieViewController" bundle:nil];
     if (self) {
-        NSLog(@"MovieViewController init");
-
         self.movie = movie;
     }
 
@@ -35,40 +33,24 @@
 {
     [super viewDidLoad];
     self.title = [self.movie title];
-    [self setPosterImage];
-    [self setSummary];
-    self.castTextView.text = [self.movie cast];
+    [self setImage];
+    self.synopsisLabel.text = [self.movie synopsis];
+    self.castLabel.text = [self.movie cast];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)setImage
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSURL *url = [self.movie posterFullSizeURL];
+    [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:url]
+        placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]
+                 success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+                     self.imageView.alpha = 0.0;
+                     self.imageView.image = image;
+                     [UIView animateWithDuration:0.25
+                                      animations:^{
+                                          self.imageView.alpha = 1.0;
+                                      }];
+                 }
+                 failure:NULL];
 }
-
-- (void)setSummary
-{
-    self.descriptionTextView.text = [self.movie synopsis];
-}
-
-- (void)setPosterImage
-{
-    NSLog(@"setPosterImage");
-    [self.imageView setImageWithURL:[self.movie posterDetailURL]];
-    
-    
-//    [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[self.movie posterDetailURL]]
-//                                placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]
-//                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-//                                             self.imageView.alpha = 0.0;
-//                                             self.imageView.image = image;
-//                                             [UIView animateWithDuration:0.25
-//                                                              animations:^{
-//                                                                  self.imageView.alpha = 1.0;
-//                                                              }];
-//                                         }
-//                                         failure:NULL];
-
-}
-
 @end

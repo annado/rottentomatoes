@@ -28,11 +28,9 @@
     return [NSURL URLWithString:url];
 }
 
-- (NSURL *)posterDetailURL
+- (NSURL *)posterFullSizeURL
 {
-    NSString *url = [[self.dictionary objectForKey:@"posters"] objectForKey:@"detailed"];
-
-    NSLog(@"detail URL: %@", url);
+    NSString *url = [[self.dictionary objectForKey:@"posters"] objectForKey:@"original"];
     return [NSURL URLWithString:url];
 }
 
