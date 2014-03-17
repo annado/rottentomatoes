@@ -54,20 +54,20 @@
 - (void)setPosterImage
 {
     NSLog(@"setPosterImage");
-//    [self.imageView setImageWithURL:[self.movie posterDetailURL]];
+    [self.imageView setImageWithURL:[self.movie posterDetailURL]];
     
     
-    [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[self.movie posterDetailURL]]
-                                placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]
-                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
-                                             self.imageView.alpha = 0.0;
-                                             self.imageView.image = image;
-                                             [UIView animateWithDuration:0.25
-                                                              animations:^{
-                                                                  self.imageView.alpha = 1.0;
-                                                              }];
-                                         }
-                                         failure:NULL];
+//    [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:[self.movie posterDetailURL]]
+//                                placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]
+//                                         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+//                                             self.imageView.alpha = 0.0;
+//                                             self.imageView.image = image;
+//                                             [UIView animateWithDuration:0.25
+//                                                              animations:^{
+//                                                                  self.imageView.alpha = 1.0;
+//                                                              }];
+//                                         }
+//                                         failure:NULL];
 
 }
 
