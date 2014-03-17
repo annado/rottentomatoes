@@ -68,8 +68,8 @@
 		58B1366018D51955007732CF /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		58B1366118D51955007732CF /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		58B1366418D51EA9007732CF /* MovieCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCell.xib; sourceTree = "<group>"; };
-		58B1366618D520C6007732CF /* MovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieCell.h; sourceTree = "<group>"; };
 		58B1366718D520C6007732CF /* MovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieCell.m; sourceTree = "<group>"; };
+		58DFD96D18D6BEA700542DBC /* MovieCell.h */ = {isa = PBXFileReference; lastKnownFileType = file; path = MovieCell.h; sourceTree = "<group>"; };
 		9D7FBB055BF749BC99730992 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB3D04DA226A49C5BF7080F5 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,8 +201,8 @@
 		58B1366318D51D8A007732CF /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				58DFD96D18D6BEA700542DBC /* MovieCell.h */,
 				58B1366418D51EA9007732CF /* MovieCell.xib */,
-				58B1366618D520C6007732CF /* MovieCell.h */,
 				58B1366718D520C6007732CF /* MovieCell.m */,
 			);
 			name = Views;

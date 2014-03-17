@@ -10,15 +10,21 @@
 #import "Movie.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
+@interface MovieCell ()
+@property (weak, nonatomic) IBOutlet UIImageView *moviePosterView;
+@property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *castLabel;
+
+- (void)setMoviePosterWithURL:(NSURL *)url;
+@end
+
 @implementation MovieCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (void)awakeFromNib
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        // Initialization code
-    }
-    return self;
+    // Initialization code
+    self.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
@@ -30,12 +36,13 @@
 
 - (void)setMovie:(Movie *)movie
 {
+    NSLog(@"setMovie");
+    _movie = movie;
+    
     self.movieTitleLabel.text = [movie title];
     self.summaryLabel.text = [movie synopsis];
     self.castLabel.text = [movie cast];
     [self setMoviePosterWithURL:[movie posterThumbnailURL]];
-
-    self.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (void)setMoviePosterWithURL:(NSURL *)url

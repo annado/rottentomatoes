@@ -11,13 +11,6 @@
 @class Movie;
 
 @interface MovieCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UIImageView *moviePosterView;
-@property (weak, nonatomic) IBOutlet UILabel *movieTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *summaryLabel;
-@property (weak, nonatomic) IBOutlet UILabel *castLabel;
-
-- (void)setMoviePosterWithURL:(NSURL *)url;
-
-- (void)setMovie: (Movie *)movie;
+//- (void)setMovie: (Movie *)movie;
+@property (nonatomic, strong) Movie *movie;
 @end

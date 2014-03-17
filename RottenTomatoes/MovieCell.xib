@@ -14,7 +14,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cy2-Jl-hE2">
-                        <rect key="frame" x="10" y="10" width="61" height="91"/>
+                        <rect key="frame" x="10" y="9" width="61" height="91"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                     </imageView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nSu-fU-1ht">
@@ -39,10 +39,10 @@
                 </subviews>
             </tableViewCellContentView>
             <connections>
-                <outlet property="castLabel" destination="DaK-AH-ReM" id="BQU-P0-Kqf"/>
-                <outlet property="moviePosterView" destination="Cy2-Jl-hE2" id="Ibs-Mv-0BU"/>
-                <outlet property="movieTitleLabel" destination="nSu-fU-1ht" id="iUS-fg-hSE"/>
-                <outlet property="summaryLabel" destination="Dqi-XP-Zbk" id="EeC-R7-9OX"/>
+                <outlet property="castLabel" destination="DaK-AH-ReM" id="BAk-xy-OGL"/>
+                <outlet property="moviePosterView" destination="Cy2-Jl-hE2" id="lZm-G4-8A3"/>
+                <outlet property="movieTitleLabel" destination="nSu-fU-1ht" id="7Df-IO-AfF"/>
+                <outlet property="summaryLabel" destination="Dqi-XP-Zbk" id="4oh-iF-kvy"/>
             </connections>
         </tableViewCell>
     </objects>

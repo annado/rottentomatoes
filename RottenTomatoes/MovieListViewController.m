@@ -95,8 +95,7 @@
     MovieCell *cell = (MovieCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     NSLog(@"Cell %i",indexPath.row);
-    Movie *movie = [self.movies get:indexPath.row];
-    [cell setMovie:movie];
+    cell.movie = [self.movies get:indexPath.row];
     return cell;
 }
 
