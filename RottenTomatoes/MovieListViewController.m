@@ -37,6 +37,7 @@
     [super viewDidLoad];
     [self setupTableView];
     [self setupPullToRefresh];
+    [self setupNavigationBar];
 }
 
 - (void)loadMovies
@@ -57,6 +58,17 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
     [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     [self loadMovies];
+}
+
+- (void)setupNavigationBar
+{
+    UIBarButtonItem *backButton =
+    [[UIBarButtonItem alloc] initWithTitle:@"Movies"
+                                     style:UIBarButtonItemStyleBordered
+                                    target:nil
+                                    action:nil];
+    
+    [[self navigationItem] setBackBarButtonItem:backButton];
 }
 
 - (void)setupPullToRefresh
@@ -104,6 +116,7 @@
     
     Movie *movie = [self.movies get:indexPath.row];
     MovieViewController *movieController = [[MovieViewController alloc] initWithMovie:movie];
+    
     [[self navigationController] pushViewController:movieController animated:YES];
 }
 
