@@ -63,13 +63,7 @@
     
     NSLog(@"Cell %i",indexPath.row);
     Movie *movie = [self.movies get:indexPath.row];
-    cell.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
-
-    [cell setMovieTitle:[movie title]];
-    [cell setMoviePosterWithURL:[movie posterUrl]];
-    [cell setSynopsis:[movie synopsis]];
-    [cell setCast:[movie cast]];
-
+    [cell setMovie:movie];
     return cell;
 }
 
