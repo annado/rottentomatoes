@@ -11,6 +11,7 @@
 #import "MovieList.h"
 #import "Movie.h"
 #import "MovieCell.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MovieListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -33,11 +34,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
 
     [self.movies load:^(void) {
+        [SVProgressHUD dismiss];
         [self.tableView reloadData];
     }];
 }
