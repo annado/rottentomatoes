@@ -17,7 +17,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) MovieList *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, strong) NSString *url;
 @end
 
 @implementation MovieListViewController
@@ -28,6 +27,7 @@
     if (self) {
         // Custom initialization
         self.title = @"In Theaters Now";
+        _url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs";
     }
     return self;
 }
@@ -39,12 +39,12 @@
     [self setupPullToRefresh];
 }
 
-- (void)loadMoviesFromUrlString:(NSString *)url
+- (void)loadMovies
 {
-    self.movies = [[MovieList alloc] initWithUrl:url];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    self.movies = [[MovieList alloc] initWithUrl:_url];
     [self.movies load:^(void) {
         [SVProgressHUD dismiss];
+        [self.refreshControl endRefreshing];
         [self.tableView reloadData];
     }];
 }
@@ -55,8 +55,8 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
-    
-    [self loadMoviesFromUrlString:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs"];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
+    [self loadMovies];
 }
 
 - (void)setupPullToRefresh
@@ -70,9 +70,7 @@
 
 - (void)refresh
 {
-    NSLog(@"refreshing...");
-    
-    [self.refreshControl endRefreshing];
+    [self loadMovies];
 }
 
 - (void)didReceiveMemoryWarning
