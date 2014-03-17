@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *synopsisLabel;
 @property (weak, nonatomic) IBOutlet UILabel *castLabel;
 @property (strong, nonatomic) Movie *movie;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @end
 
 @implementation MovieViewController
@@ -41,6 +42,8 @@
 - (void)setImage
 {
     NSURL *url = [self.movie posterFullSizeURL];
+    [self.activityIndicator startAnimating];
+    
     [self.imageView setImageWithURLRequest:[NSURLRequest requestWithURL:url]
         placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]
                  success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
@@ -50,7 +53,10 @@
                                       animations:^{
                                           self.imageView.alpha = 1.0;
                                       }];
+                     [self.activityIndicator stopAnimating];
                  }
-                 failure:NULL];
+                 failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+                     [self.activityIndicator stopAnimating];
+                 }];
 }
 @end
