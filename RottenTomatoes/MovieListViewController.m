@@ -16,6 +16,8 @@
 @interface MovieListViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) MovieList *movies;
+@property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) NSString *url;
 @end
 
 @implementation MovieListViewController
@@ -26,7 +28,6 @@
     if (self) {
         // Custom initialization
         self.title = @"In Theaters Now";
-        self.movies = [[MovieList alloc] initWithUrl:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs"];
     }
     return self;
 }
@@ -34,15 +35,44 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
-    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
+    [self setupTableView];
+    [self setupPullToRefresh];
+}
 
+- (void)loadMoviesFromUrlString:(NSString *)url
+{
+    self.movies = [[MovieList alloc] initWithUrl:url];
+    [SVProgressHUD showWithMaskType:SVProgressHUDMaskTypeBlack];
     [self.movies load:^(void) {
         [SVProgressHUD dismiss];
         [self.tableView reloadData];
     }];
+}
+
+- (void)setupTableView
+{
+    self.tableView.rowHeight = 111;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    [self.tableView registerNib:[UINib nibWithNibName:@"MovieCell" bundle:nil] forCellReuseIdentifier:@"MovieCell"];
+    
+    [self loadMoviesFromUrlString:@"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs"];
+}
+
+- (void)setupPullToRefresh
+{
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(refresh)
+             forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:refreshControl];
+    self.refreshControl = refreshControl;
+}
+
+- (void)refresh
+{
+    NSLog(@"refreshing...");
+    
+    [self.refreshControl endRefreshing];
 }
 
 - (void)didReceiveMemoryWarning
@@ -78,11 +108,6 @@
     Movie *movie = [self.movies get:indexPath.row];
     MovieViewController *movieController = [[MovieViewController alloc] initWithMovie:movie];
     [[self navigationController] pushViewController:movieController animated:YES];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 111;
 }
 
 @end
