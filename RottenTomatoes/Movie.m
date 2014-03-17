@@ -22,9 +22,18 @@
     return [self.dictionary objectForKey:@"title"];
 }
 
-- (NSString *)posterUrl
+- (NSURL *)posterThumbnailURL
 {
-    return [[self.dictionary objectForKey:@"posters"] objectForKey:@"thumbnail"];
+    NSString *url = [[self.dictionary objectForKey:@"posters"] objectForKey:@"thumbnail"];
+    return [NSURL URLWithString:url];
+}
+
+- (NSURL *)posterDetailURL
+{
+    NSString *url = [[self.dictionary objectForKey:@"posters"] objectForKey:@"detailed"];
+
+    NSLog(@"detail URL: %@", url);
+    return [NSURL URLWithString:url];
 }
 
 - (NSString *)synopsis

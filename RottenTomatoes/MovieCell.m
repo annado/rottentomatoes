@@ -33,14 +33,14 @@
     self.movieTitleLabel.text = [movie title];
     self.summaryLabel.text = [movie synopsis];
     self.castLabel.text = [movie cast];
-    [self setMoviePosterWithURL:[movie posterUrl]];
+    [self setMoviePosterWithURL:[movie posterThumbnailURL]];
 
     self.accessoryType =  UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (void)setMoviePosterWithURL:(NSString *)url
+- (void)setMoviePosterWithURL:(NSURL *)url
 {
-    [self.moviePosterView setImageWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]
+    [self.moviePosterView setImageWithURLRequest:[NSURLRequest requestWithURL:url]
         placeholderImage:[UIImage imageNamed:@"placeholder-avatar"]
         success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
            self.moviePosterView.alpha = 0.0;

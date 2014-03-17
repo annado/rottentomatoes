@@ -14,7 +14,8 @@
 
 - (id)initWithDictionary: (NSDictionary *)dictionary;
 - (NSString *)title;
-- (NSString *)posterUrl;
+- (NSURL *)posterThumbnailURL;
+- (NSURL *)posterDetailURL;
 - (NSString *)synopsis;
 - (NSString *)cast;
 
