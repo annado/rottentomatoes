@@ -20,23 +20,27 @@
     return self;
 }
 
-- (void)load: (void (^)(void))callback
+- (void)load: (void (^)(void))success failure:(void (^)(void))failure
 {
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:self.url]];
     [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
-        
-        self.list = object[@"movies"];
-        callback(); // TODO
+
+        if (connectionError) {
+            failure();
+        } else {
+            id object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+            self.list = object[@"movies"];
+            success();
+        }
     }];
 }
 
-- (int)count
+- (NSUInteger)count
 {
     return [self.list count];
 }
 
-- (Movie *)get: (int)index
+- (Movie *)get: (NSUInteger)index
 {
     if (index < [self count]) {
         NSDictionary *dict = [self.list objectAtIndex:index];

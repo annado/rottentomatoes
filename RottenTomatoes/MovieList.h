@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSString *url;
 
 - (id)initWithUrl: (NSString *)url;
-- (void)load: (void (^)(void))callback;
-- (int)count;
-- (Movie *)get: (int)index;
+- (void)load: (void (^)(void))success failure:(void (^)(void))failure;
+- (NSUInteger)count;
+- (Movie *)get: (NSUInteger)index;
 @end

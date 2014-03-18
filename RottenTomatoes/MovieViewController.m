@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *castLabel;
 @property (strong, nonatomic) Movie *movie;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) UIView *alertView;
 @end
 
 @implementation MovieViewController
@@ -37,6 +38,17 @@
     [self setImage];
     self.synopsisLabel.text = [self.movie synopsis];
     self.castLabel.text = [self.movie cast];
+    [self setupAlertView];
+    self.activityIndicator.hidesWhenStopped = true;
+}
+
+- (void)setupAlertView
+{
+    UIView *alertView = [[[NSBundle mainBundle] loadNibNamed:@"AlertView" owner:self options:nil] objectAtIndex:0];
+    alertView.frame = CGRectMake(0,64,340,34);
+    alertView.hidden = true;
+    self.alertView = alertView;
+    [self.view addSubview:alertView];
 }
 
 - (void)setImage
@@ -57,6 +69,7 @@
                  }
                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
                      [self.activityIndicator stopAnimating];
+                     self.alertView.hidden = false;
                  }];
 }
 @end

@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) MovieList *movies;
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, strong) UIView *alertView;
 @end
 
 @implementation MovieListViewController
@@ -35,18 +36,33 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupAlertView];
     [self setupTableView];
     [self setupPullToRefresh];
     [self setupNavigationBar];
 }
 
+- (void)setupAlertView
+{
+    UIView *alertView = [[[NSBundle mainBundle] loadNibNamed:@"AlertView" owner:self options:nil] objectAtIndex:0];
+    alertView.frame = CGRectMake(0,64,340,34);
+    self.alertView = alertView;
+    [self.view addSubview:alertView];
+}
+
 - (void)loadMovies
 {
-    self.movies = [[MovieList alloc] initWithUrl:_url];
-    [self.movies load:^(void) {
+    self.alertView.hidden = true;
+    MovieList *movies = [[MovieList alloc] initWithUrl:_url];
+    [movies load:^(void) {
         [SVProgressHUD dismiss];
         [self.refreshControl endRefreshing];
+        self.movies = movies;
         [self.tableView reloadData];
+    } failure:^(void) {
+        [SVProgressHUD dismiss];
+        [self.refreshControl endRefreshing];
+        self.alertView.hidden = false;
     }];
 }
 
@@ -103,15 +119,13 @@
     static NSString *CellIdentifier = @"MovieCell";
     
     MovieCell *cell = (MovieCell *)[self.tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    NSLog(@"Cell %i",indexPath.row);
+
     cell.movie = [self.movies get:indexPath.row];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"didSelectRow: %i", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     Movie *movie = [self.movies get:indexPath.row];
