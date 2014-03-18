@@ -15,10 +15,22 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
 
-    MovieListViewController *moviesViewController = [[MovieListViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:moviesViewController];
+    NSMutableArray *moviesViewControllers = [[NSMutableArray alloc] init];
     
-    self.window.rootViewController = navController;
+    MovieListViewController *theaterViewController = [[MovieListViewController alloc] init];
+    UINavigationController *theaterNavController = [[UINavigationController alloc] initWithRootViewController:theaterViewController];
+    [moviesViewControllers addObject:theaterNavController];
+    
+    MovieListViewController *dvdViewController = [[MovieListViewController alloc] init];
+    dvdViewController.title = @"DVD";
+    dvdViewController.url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/dvds/current_releases.json?page_limit=50&apikey=g9au4hv6khv6wzvzgt55gpqs";
+    UINavigationController *dvdNavController = [[UINavigationController alloc] initWithRootViewController:dvdViewController];
+    [moviesViewControllers addObject:dvdNavController];
+    
+    UITabBarController *tabController = [[UITabBarController alloc] init];
+    [tabController setViewControllers:moviesViewControllers];
+    
+    self.window.rootViewController = tabController;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
